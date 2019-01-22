@@ -1,0 +1,35 @@
+{
+    "name": "bitcastle/bitcastle-onesignal",
+    "description": "Simple OneSignal Service Provider for laravel",
+    "keywords": ["onesignal", "webpush", "push", "laravel", "laravel 5", "bitcastle", "notifications", "notification"],
+    "type": "library",
+    "require": {
+        "php": "^5.6.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/support": "4.*|5.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Bitcastle\\OneSignal\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Bitcastle\\OneSignal\\OneSignalProvider"
+        ],
+        "aliases": {
+          "OneSignal": "Berkayk\\OneSignal\\OneSignalFacade"
+        }
+      }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Moraes",
+            "email": "lucas@bitcastle.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
