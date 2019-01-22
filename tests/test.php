@@ -12,8 +12,10 @@ try{
     $client->setConfigs(['appKey' => "2c9872c0-500e-46ae-8a4a-4543353e3cf8", 
                          'restKey' => "Y2M2YTk4ZDktNjJmOC00ZjNlLTgzY2ItMjJhOWQxYzlmMTk2"]);
     $client->sendNotification($testNotification);
-    echo "Success: Notification sent.\n";
-    echo "WARNING: if you didn't received the notification, go to: http://bitcastle.com.br and subscribe your browser for testing";
+    echo "\n\SUCCESS: Notification sent.\n";
+    echo "-------------------------------------------------------------------------------------------------------------\n";
+    echo "WARNING: if you didn't received the notification, \n     Go to: http://bitcastle.com.br and subscribe your browser for testing";
+    echo "\n--------------------------------------------------------------------------------------------------------------";
 } catch(\Exception $e){
     echo "Error: ".$e->getMessage();
 }
