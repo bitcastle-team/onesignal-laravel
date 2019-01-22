@@ -4,7 +4,10 @@ namespace Bitcastle\OneSignal;
 
 class OneSignalNotification
 {
-    private $options;
+    const ALL_SEGMENTS = 'All';
+
+    private $options = ['app_id' => '',
+                        'included_segments' => [self::ALL_SEGMENTS]];
 
     /**
      * Class builder method, in it you can create a notification by passing only one message.
@@ -15,10 +18,12 @@ class OneSignalNotification
      */
     public function __construct(string $message = '', string $title = '')
     {
-        $this->options['app_id']            = config('oneSignal.appKey');
-        $this->options['included_segments'] = ['All'];
 
-        $title = '' ? config('app.title') : $title;
+        // check if function extists prevent errors on testing the service (tests/test.php)
+        if(function_exists("config")) {
+            $title = '' ? config('app.title') : $title;
+        }
+
 
         /**
          * It is mandatory to have a message in the EN language
@@ -34,6 +39,7 @@ class OneSignalNotification
      */
     public function __get(string $property)
     {
+
         if (isset($this->options[$property])) {
             return is_array($this->options[$property]) ? collect($this->options[$property]) : $this->options[$property];
         }
@@ -96,6 +102,17 @@ class OneSignalNotification
     public function removeOption(string $key) : OneSignalNotification
     {
         unset($this->options[$key]);
+        return $this;
+    }
+
+    /**
+     * Set app_id index into options property
+     *
+     * @param string $key
+     * @return OneSignalNotification
+     */
+    public function setAppId($appKey){
+        $this->options["app_id"] = $appKey;
         return $this;
     }
 
