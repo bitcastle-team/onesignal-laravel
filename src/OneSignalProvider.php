@@ -3,7 +3,7 @@
 namespace Bitcastle\OneSignal;
 
 use Illuminate\Support\ServiceProvider;
-use OneSignalService as OneSignal;
+use Bitcastle\OneSignal\OneSignalService;
 
 class OneSignalProvider extends ServiceProvider
 {
@@ -30,7 +30,7 @@ class OneSignalProvider extends ServiceProvider
      */
     public function register()
     {            
-        $this->app->bind(OneSignal::class, function ($app) {
+        $this->app->bind('OneSignal', function ($app) {
             // check for defined onesignal config for the application
             $config = isset($app['config']['services']['onesignal']) ? $app['config']['services']['onesignal'] : null;
             if (is_null($config)) {
@@ -38,8 +38,8 @@ class OneSignalProvider extends ServiceProvider
             }
 
             // initialize service and set config application for it
-            $onesignalClient = new OneSignal();
-            $onesignalClient->setConfig($config);
+            $onesignalClient = new OneSignalService();
+            $onesignalClient->setConfigs($config);
             return $onesignalClient;
         });
     }
